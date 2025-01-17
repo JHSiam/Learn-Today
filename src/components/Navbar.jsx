@@ -1,39 +1,65 @@
-import React, { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../authentication/AuthProvider";
 
-const Navbar = ({ isLoggedIn=true, userName, profilePicture }) => {
-    
+const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const {user, logout} = useContext(AuthContext);
+
+  function handleLogout(){
+    logout()
+  }
 
   return (
     <div className="navbar bg-base-100 shadow-lg px-4">
       {/* Logo and Website Name */}
       <div className="flex-1">
-        <a className="text-xl font-bold">
+        <NavLink to="/" className="text-xl font-bold">
           Website Name
-        </a>
+        </NavLink>
       </div>
 
       {/* Navigation Links */}
       <div className="hidden lg:flex flex-none">
         <ul className="menu menu-horizontal px-1 space-x-4">
           <li>
-            <a href="#home">Home</a>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="#classes">All Classes</a>
+            <NavLink
+              to="/classes"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              All Classes
+            </NavLink>
           </li>
           <li>
-            <a href="#teach">Teach on Website</a>
+            <NavLink
+              to="/teach"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Teach on Website
+            </NavLink>
           </li>
-          {isLoggedIn ? (
+          {user?.email ? (
             <li className="relative">
               <button
                 className="btn btn-ghost btn-circle avatar"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 <div className="w-10 rounded-full">
-                  <img src={profilePicture} alt="Profile" />
+                  <img src={user?.photoURL} alt="Profile" />
                 </div>
               </button>
 
@@ -45,17 +71,17 @@ const Navbar = ({ isLoggedIn=true, userName, profilePicture }) => {
                   </div>
                   <ul>
                     <li>
-                      <a
-                        href="#dashboard"
+                      <NavLink
+                        to="/dashboard"
                         className="block px-4 py-2 hover:bg-gray-100"
                       >
                         Dashboard
-                      </a>
+                      </NavLink>
                     </li>
                     <li>
                       <button
                         className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                        onClick={() => alert("Logout")}
+                        onClick={handleLogout}
                       >
                         Logout
                       </button>
@@ -66,9 +92,12 @@ const Navbar = ({ isLoggedIn=true, userName, profilePicture }) => {
             </li>
           ) : (
             <li>
-              <a href="#signin" className="btn btn-primary">
+              <NavLink
+                to="/login"
+                className="btn btn-primary"
+              >
                 Sign In
-              </a>
+              </NavLink>
             </li>
           )}
         </ul>
@@ -97,18 +126,46 @@ const Navbar = ({ isLoggedIn=true, userName, profilePicture }) => {
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <a href="#home">Home</a>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="#classes">All Classes</a>
+            <NavLink
+              to="/classes"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              All Classes
+            </NavLink>
           </li>
           <li>
-            <a href="#teach">Teach on Website</a>
+            <NavLink
+              to="/teach"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Teach on Website
+            </NavLink>
           </li>
           {isLoggedIn ? (
             <>
               <li>
-                <a href="#dashboard">Dashboard</a>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive ? "text-primary font-bold" : ""
+                  }
+                >
+                  Dashboard
+                </NavLink>
               </li>
               <li>
                 <button onClick={() => alert("Logout")}>Logout</button>
@@ -116,9 +173,12 @@ const Navbar = ({ isLoggedIn=true, userName, profilePicture }) => {
             </>
           ) : (
             <li>
-              <a href="#signin" className="btn btn-primary">
+              <NavLink
+                to="/signin"
+                className="btn btn-primary"
+              >
                 Sign In
-              </a>
+              </NavLink>
             </li>
           )}
         </ul>
