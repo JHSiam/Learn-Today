@@ -7,11 +7,18 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
 import AuthProvider from './authentication/AuthProvider.jsx';
 import Register from './authentication/Register.jsx';
 import Login from './authentication/Login.jsx';
 import AdminDashboard from './dashboard/AdminDashboard.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
+import AllUsers from './dashboard/admin/AllUsers.jsx';
 
 
 const router = createBrowserRouter([
@@ -30,17 +37,30 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <AdminDashboard></AdminDashboard>
+        element: <AdminDashboard></AdminDashboard>,
+        children: [
+          {
+            path: "all-users",
+            element: <AllUsers></AllUsers>
+          }
+        ]
       }
     ]
   },
 ]);
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <AuthProvider>
-    <RouterProvider router={router}></RouterProvider>
-  </AuthProvider>
-  
-</StrictMode>,
+    <AuthProvider>
+
+      <QueryClientProvider client={queryClient}>
+
+        <RouterProvider router={router}></RouterProvider>
+
+      </QueryClientProvider>
+    </AuthProvider>
+
+  </StrictMode>,
 )

@@ -1,17 +1,25 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
+//import useSingleUser from "../hooks/useSingleUser";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const {user, logout} = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  //const [SingleUser] = useSingleUser();
+  const [isAdmin] = useAdmin();
 
-  function handleLogout(){
+
+  function handleLogout() {
     logout()
   }
 
-  //console.log(user);
-  
+  //console.log(isAdmin);
+
+
+
+
 
   return (
     <div className="navbar bg-base-100 shadow-lg px-4">
@@ -73,14 +81,28 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                     {userName}
                   </div>
                   <ul>
-                    <li>
-                      <NavLink
-                        to="/dashboard"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        Dashboard
-                      </NavLink>
-                    </li>
+                    {
+                      user && isAdmin && <li>
+                        <NavLink
+                          to="/dashboard"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+                    }
+
+                    {
+                      user && !isAdmin && <li>
+                        <NavLink
+                          to="/student-dashboard"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+                    }
+
                     <li>
                       <button
                         className="block w-full text-left px-4 py-2 hover:bg-gray-100"

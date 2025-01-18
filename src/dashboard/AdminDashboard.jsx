@@ -29,7 +29,7 @@ const AdminDashboard = () => {
             </li>
             <li>
               <NavLink
-                to="users"
+                to="all-users"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg ${
                     isActive
