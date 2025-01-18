@@ -4,6 +4,8 @@ import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 export default function Register() {
     const { createNewUser, setUser, updateUserProfile, logInWithGoogle } =
@@ -11,6 +13,7 @@ export default function Register() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
+    const axiosPublic = useAxiosPublic();
 
     function handleRegistration(e) {
         e.preventDefault();
@@ -28,7 +31,7 @@ export default function Register() {
             );
             return;
         } else {
-            setPasswordError(""); 
+            setPasswordError("");
         }
 
         // Create new user
@@ -36,6 +39,31 @@ export default function Register() {
             .then((result) => {
                 const user = result.user;
                 setUser(user);
+
+                //send user to database
+                const dbuser = {
+                    name,
+                    email,
+                    photoURL,
+                    role: 'student',
+                    phone: '+88098'
+
+                }
+
+                axiosPublic.post('/users', dbuser)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                        }
+                    })
 
                 // Update user profile
                 updateUserProfile({ displayName: name, photoURL: photoURL })
@@ -71,6 +99,32 @@ export default function Register() {
                     position: "top-center",
                 });
 
+                //send user to database
+                const dbuser = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    photoURL: user?.photoURL,
+                    role: 'student',
+                    phone: '+88098'
+
+                }
+                
+
+                axiosPublic.post('/users', dbuser)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                        }
+                    })
+
                 // Delay navigation
                 setTimeout(() => {
                     navigate("/");
@@ -104,6 +158,7 @@ export default function Register() {
                             required
                         />
                     </div>
+
 
                     {/* Email */}
                     <div className="mb-4">

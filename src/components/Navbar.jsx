@@ -10,6 +10,9 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
     logout()
   }
 
+  //console.log(user);
+  
+
   return (
     <div className="navbar bg-base-100 shadow-lg px-4">
       {/* Logo and Website Name */}

@@ -4,12 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from './AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 export default function Login() {
   const { userLogin, setUser, logInWithGoogle } = useContext(AuthContext);
   const [emailInput, setEmailInput] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ export default function Login() {
 
         // Delay navigation to allow toast to display
         setTimeout(() => {
-            navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/");
         }, 2000); // 2-second delay
       })
       .catch((err) => {
@@ -46,9 +48,35 @@ export default function Login() {
           position: "top-center",
         });
 
+        //send user to database
+        const dbuser = {
+          name: user?.displayName,
+          email: user?.email,
+          photoURL: user?.photoURL,
+          role: 'student',
+          phone: '+88098'
+
+        }
+
+
+        axiosPublic.post('/users', dbuser)
+          .then(res => {
+            if (res.data.insertedId) {
+              console.log('user added to the database')
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'User created successfully.',
+                showConfirmButton: false,
+                timer: 1500
+              });
+
+            }
+          })
+
         // Delay navigation to allow toast to display
         setTimeout(() => {
-            navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/");
         }, 2000); // 2-second delay
       })
       .catch((err) => {

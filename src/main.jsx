@@ -10,20 +10,27 @@ import {
 import AuthProvider from './authentication/AuthProvider.jsx';
 import Register from './authentication/Register.jsx';
 import Login from './authentication/Login.jsx';
+import AdminDashboard from './dashboard/AdminDashboard.jsx';
+import ErrorPage from './components/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/register",
         element: <Register></Register>
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login></Login>
+      },
+      {
+        path: "/dashboard",
+        element: <AdminDashboard></AdminDashboard>
       }
     ]
   },
