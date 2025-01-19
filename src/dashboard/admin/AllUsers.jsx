@@ -4,7 +4,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
 export default function AllUsers() {
-  const [allUsers, refetch] = useAllUsers();
+  const [allUsers, loading, refetch] = useAllUsers();
   const axiosPublic = useAxiosPublic();
 
   const handleMakeAdmin = (userId) => {
@@ -27,6 +27,7 @@ export default function AllUsers() {
                 "The user has been made an admin.",
                 "success"
               );
+              refetch(); // Refetch the users list after success
             } else {
               Swal.fire("Oops!", "Failed to update the user.", "error");
             }
@@ -37,7 +38,6 @@ export default function AllUsers() {
           });
       }
     });
-    refetch
   };
 
   return (
@@ -73,7 +73,7 @@ export default function AllUsers() {
                   <button
                     onClick={() => handleMakeAdmin(user._id)}
                     className="btn btn-sm btn-primary"
-                    disabled={user.role==='admin'}
+                    disabled={user.role === "admin"}
                   >
                     Make Admin
                   </button>

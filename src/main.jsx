@@ -19,6 +19,8 @@ import Login from './authentication/Login.jsx';
 import AdminDashboard from './dashboard/AdminDashboard.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
 import AllUsers from './dashboard/admin/AllUsers.jsx';
+import TeacherRequest from './components/TeacherRequest.jsx';
+import TeacherApplications from './dashboard/admin/TeacherApplications.jsx';
 
 
 const router = createBrowserRouter([
@@ -42,8 +44,16 @@ const router = createBrowserRouter([
           {
             path: "all-users",
             element: <AllUsers></AllUsers>
+          },
+          {
+            path: 'teacher-request',
+            element: <TeacherApplications></TeacherApplications>
           }
         ]
+      },
+      {
+        path:"/teach",
+        element: <TeacherRequest></TeacherRequest>
       }
     ]
   },
