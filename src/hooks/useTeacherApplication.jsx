@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-//import useAxiosPublic from "./useAxiosPublic";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useTeacherApplication = () => {
   const axiosPublic = useAxiosPublic();
 
   const {
-    data: teacherApplications = [],
-    isLoading: loading,
-    refetch,
+    data: teacherApplications = [], // Data from API
+    isLoading: loading,             // Loading state
+    refetch,                        // Function to refetch data
   } = useQuery({
-    queryKey: ["teacherApplications"], // Query key
+    queryKey: ["teacherApplications"],
     queryFn: async () => {
       const res = await axiosPublic.get("/teacher-application");
-      return res.data; // Return the response data
+      return res.data; // Return the fetched data
     },
   });
 

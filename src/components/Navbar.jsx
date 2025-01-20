@@ -3,19 +3,21 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
 //import useSingleUser from "../hooks/useSingleUser";
 import useAdmin from "../hooks/useAdmin";
+import useTeacher from "../hooks/useTeacher";
 
 const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
   //const [SingleUser] = useSingleUser();
   const [isAdmin] = useAdmin();
+  const [isTeacher] = useTeacher();
 
 
   function handleLogout() {
     logout()
   }
 
-  //console.log(isAdmin);
+
 
 
 
@@ -93,7 +95,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                     }
 
                     {
-                      user && !isAdmin && <li>
+                      user && !isAdmin && !isTeacher && <li>
                         <NavLink
                           to="/student-dashboard"
                           className="block px-4 py-2 hover:bg-gray-100"
@@ -101,6 +103,19 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                           Dashboard
                         </NavLink>
                       </li>
+                    }
+
+                    {
+
+                      user && isTeacher && <li>
+                        <NavLink
+                          to="/teacher-dashboard"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+
                     }
 
                     <li>

@@ -52,6 +52,7 @@ export default function AllUsers() {
               <th>User Image</th>
               <th>User Name</th>
               <th>User Email</th>
+              <th>Role</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -69,6 +70,19 @@ export default function AllUsers() {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>
+                  <span
+                    className={`badge ${
+                      user.role === "admin"
+                        ? "badge-success"
+                        : user.role === "teacher"
+                        ? "badge-warning"
+                        : "badge-secondary"
+                    }`}
+                  >
+                    {user.role || "user"}
+                  </span>
+                </td>
                 <td>
                   <button
                     onClick={() => handleMakeAdmin(user._id)}

@@ -21,6 +21,10 @@ import ErrorPage from './components/ErrorPage.jsx';
 import AllUsers from './dashboard/admin/AllUsers.jsx';
 import TeacherRequest from './components/TeacherRequest.jsx';
 import TeacherApplications from './dashboard/admin/TeacherApplications.jsx';
+import TeacherDashboard from './dashboard/TeacherDashboard.jsx';
+import AddClass from './dashboard/teacher/AddClass.jsx';
+import AllClass from './dashboard/admin/AllClass.jsx';
+import MyClass from './dashboard/teacher/MyClass.jsx';
 
 
 const router = createBrowserRouter([
@@ -48,6 +52,24 @@ const router = createBrowserRouter([
           {
             path: 'teacher-request',
             element: <TeacherApplications></TeacherApplications>
+          },
+          {
+            path: 'all-classes',
+            element: <AllClass></AllClass>
+          }
+        ]
+      },
+      {
+        path: "/teacher-dashboard",
+        element: <TeacherDashboard></TeacherDashboard>,
+        children: [
+          {
+            path: "add-class",
+            element: <AddClass></AddClass>
+          },
+          {
+            path: "my-classes",
+            element: <MyClass></MyClass>
           }
         ]
       },

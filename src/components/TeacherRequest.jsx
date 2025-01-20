@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../authentication/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { toast, ToastContainer } from "react-toastify"; // Assuming you are using react-toastify for toasts
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TeacherRequestForm() {
@@ -25,33 +25,33 @@ export default function TeacherRequestForm() {
     },
   });
 
-  
-
   const onSubmit = async (data) => {
     const formData = {
       ...data,
       email: user?.email, // Ensure the email is user.email
       status: "pending",
-      photoUrl: user?.photoURL // Add status field
+      photoUrl: user?.photoURL, // Add photo URL
     };
-    
+
     try {
-      const response = await axiosPublic.post("/teacher-application", formData); // Use axiosPublic for API call
+      const response = await axiosPublic.post("/teacher-application", formData);
       if (response.data.insertedId) {
         toast.success("Application submitted successfully!");
-        reset(); // Reset the form
+        reset(); // Reset the form after successful submission
+      } else if (response.data.message === "Application already exists") {
+        toast.warning("You have already applied with this email.");
       } else {
-        toast.error("Failed to submit the application. Please try again."); // Show error toast
+        toast.error("Failed to submit the application. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting application:", error);
-      toast.error("An error occurred. Please try again later."); // Show error toast
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-        <ToastContainer />
+      <ToastContainer />
       <h2 className="text-2xl font-bold mb-4">Apply for Teaching Position</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
