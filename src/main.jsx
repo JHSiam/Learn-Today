@@ -25,6 +25,10 @@ import TeacherDashboard from './dashboard/TeacherDashboard.jsx';
 import AddClass from './dashboard/teacher/AddClass.jsx';
 import AllClass from './dashboard/admin/AllClass.jsx';
 import MyClass from './dashboard/teacher/MyClass.jsx';
+import AllApprovedClass from './components/AllApprovedClass.jsx';
+import ThisClassDetails from './components/ThisClassDetails.jsx';
+import Payment from './components/payment/Payment.jsx';
+//import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -76,6 +80,18 @@ const router = createBrowserRouter([
       {
         path:"/teach",
         element: <TeacherRequest></TeacherRequest>
+      },
+      {
+        path: "/classes",
+        element: <AllApprovedClass></AllApprovedClass>
+      },
+      {
+        path: "/this-class-details/:id",
+        element: <ThisClassDetails></ThisClassDetails>
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment></Payment>
       }
     ]
   },
