@@ -1,7 +1,9 @@
 import React from "react";
 import { FaEdit, FaTrashAlt, FaInfoCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function ClassCard({ classItem }) {
+  const navigate = useNavigate();
   return (
     <div className="card bg-base-100 shadow-xl border border-gray-200 p-4">
       <figure>
@@ -46,7 +48,7 @@ export default function ClassCard({ classItem }) {
           <button className="btn btn-sm btn-error flex items-center gap-2">
             <FaTrashAlt /> Delete
           </button>
-          <button className="btn btn-sm btn-info flex items-center gap-2">
+          <button className="btn btn-sm btn-info flex items-center gap-2" onClick={()=>navigate(`/my-class-details/${classItem._id}`)}>
             <FaInfoCircle /> See Details
           </button>
         </div>

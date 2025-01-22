@@ -28,6 +28,8 @@ import MyClass from './dashboard/teacher/MyClass.jsx';
 import AllApprovedClass from './components/AllApprovedClass.jsx';
 import ThisClassDetails from './components/ThisClassDetails.jsx';
 import Payment from './components/payment/Payment.jsx';
+import StudentDashboard from './dashboard/StudentDashboard.jsx';
+import MyEnrolledClass from './dashboard/student/MyEnrolledClass.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -74,6 +76,16 @@ const router = createBrowserRouter([
           {
             path: "my-classes",
             element: <MyClass></MyClass>
+          }
+        ]
+      },
+      {
+        path: "/student-dashboard",
+        element: <StudentDashboard></StudentDashboard>,
+        children: [
+          {
+            path: "my-enrolled-classes",
+            element: <MyEnrolledClass></MyEnrolledClass>
           }
         ]
       },
