@@ -48,7 +48,7 @@ export default function ClassCard({ classItem }) {
           <button className="btn btn-sm btn-error flex items-center gap-2">
             <FaTrashAlt /> Delete
           </button>
-          <button className="btn btn-sm btn-info flex items-center gap-2" onClick={()=>navigate(`/my-class-details/${classItem._id}`)}>
+          <button className="btn btn-sm btn-info flex items-center gap-2" onClick={()=>navigate(`my-class-details/${classItem._id}`)}>
             <FaInfoCircle /> See Details
           </button>
         </div>

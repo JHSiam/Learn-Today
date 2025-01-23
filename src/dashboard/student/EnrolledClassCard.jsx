@@ -15,7 +15,7 @@ const EnrolledClassCard = ({ title, name, image, classId }) => {
           <strong>Instructor:</strong> {name}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary btn-sm flex items-center" onClick={()=>navigate(`/my-enroll-class-details/${classId}`)}>
+          <button className="btn btn-primary btn-sm flex items-center" onClick={()=>navigate(`my-enroll-class-details/${classId}`)}>
             Continue <FaArrowRight className="ml-2" />
           </button>
         </div>
