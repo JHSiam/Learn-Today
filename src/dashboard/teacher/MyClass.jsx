@@ -17,7 +17,7 @@ export default function MyClass() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {myClasses.map((classItem) => (
-            <ClassCard key={classItem._id} classItem={classItem} />
+            <ClassCard key={classItem._id} classItem={classItem} refetch = {refetch}/>
           ))}
         </div>
       )}
