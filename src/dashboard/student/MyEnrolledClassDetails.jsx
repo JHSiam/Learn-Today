@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import TeacherEvalutation from "./TeacherEvalutation";
 
 export default function MyEnrolledClassDetails() {
   const { id } = useParams(); // Class ID
@@ -136,6 +137,7 @@ export default function MyEnrolledClassDetails() {
           </tbody>
         </table>
       )}
+      <TeacherEvalutation classId = {id}></TeacherEvalutation>
     </div>
   );
 }
