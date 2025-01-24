@@ -4,9 +4,9 @@ import { FaUsers, FaChalkboardTeacher, FaBook, FaUser } from "react-icons/fa";
 
 const AdminDashboard = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white flex flex-col">
+      <aside className="bg-gray-800 text-white flex flex-col w-full lg:w-64 transition-all duration-300 ease-in-out">
         <div className="text-2xl font-bold p-4 border-b border-gray-700">
           Dashboard
         </div>
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
                 }
               >
                 <FaChalkboardTeacher className="mr-2" />
-                Teacher Request
+                <span>Teacher Request</span>
               </NavLink>
             </li>
             <li>
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
                 }
               >
                 <FaUsers className="mr-2" />
-                Users
+                <span>Users</span>
               </NavLink>
             </li>
             <li>
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
                 }
               >
                 <FaBook className="mr-2" />
-                All Classes
+                <span>All Classes</span>
               </NavLink>
             </li>
             <li>
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
                 }
               >
                 <FaUser className="mr-2" />
-                Profile
+                <span>Profile</span>
               </NavLink>
             </li>
           </ul>
@@ -77,7 +77,7 @@ const AdminDashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-gray-100 p-4">
+      <main className="flex-1 bg-gray-100 p-4 overflow-auto">
         <Outlet />
       </main>
     </div>
