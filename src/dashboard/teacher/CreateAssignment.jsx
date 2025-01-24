@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AiOutlinePlus } from "react-icons/ai";
 
-export default function CreateAssignment({ classId }) {
+export default function CreateAssignment({ classId, setTotalAssignments, totalAssignments }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
@@ -17,6 +17,7 @@ export default function CreateAssignment({ classId }) {
         submissionCount : 0,
         ...data,
       });
+      setTotalAssignments(totalAssignments+1);
       //console.log("Assignment created successfully:", response.data);
 
       // Show success toast

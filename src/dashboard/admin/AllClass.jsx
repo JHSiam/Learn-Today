@@ -1,10 +1,12 @@
 import React from "react";
 import useAllClass from "../../hooks/useAllClass";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 export default function AllClass() {
     const [allClasses, loading, refetch] = useAllClass();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     if (loading) {
         return <div>Loading...</div>;
@@ -94,6 +96,7 @@ export default function AllClass() {
                                             : "bg-gray-400 text-gray-700 cursor-not-allowed"
                                     }`}
                                     disabled={classItem.status !== "approved"}
+                                    onClick={()=>navigate(`admin-class-progress/${classItem._id}`)}
                                 >
                                     Progress
                                 </button>
