@@ -4,7 +4,7 @@ import { AuthContext } from "../authentication/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useTeacher from "../hooks/useTeacher";
 
-const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
+const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
@@ -28,7 +28,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
         <ul className="menu menu-horizontal px-1 space-x-4">
           <li>
             <NavLink
-              to="/home"
+              to="/"
               className={({ isActive }) =>
                 isActive ? "text-primary font-bold" : ""
               }
@@ -69,9 +69,9 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-48 z-20">
+                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-52 z-20">
                   <div className="py-2 px-4 font-semibold text-gray-700">
-                    {userName}
+                    {user.displayName}
                   </div>
                   <ul>
                     {user && isAdmin && (
@@ -153,7 +153,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
         >
           <li>
             <NavLink
-              to="/home"
+              to="/"
               className={({ isActive }) =>
                 isActive ? "text-primary font-bold" : ""
               }

@@ -98,7 +98,7 @@ const CheckoutForm = ({classData}) => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                //navigate('/dashboard/my-enrolled-classes');
+                navigate('/student-dashboard/my-enrolled-classes');
             }
         }
     };

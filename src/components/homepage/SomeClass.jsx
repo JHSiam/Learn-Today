@@ -25,7 +25,7 @@ export default function SomeClass() {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axiosPublic.get('/all-classes/approved');
+        const response = await axiosPublic.get('/all-classes-home/approved');
         const sortedClasses = response.data
           .sort((a, b) => b.enrollment - a.enrollment) // Sort by enrollment in descending order
           .slice(0, 3); // Take the top 3 classes

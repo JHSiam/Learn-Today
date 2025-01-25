@@ -35,6 +35,7 @@ import MyEnrolledClassDetails from './dashboard/student/MyEnrolledClassDetails.j
 import AdminClassProgression from './dashboard/admin/AdminClassProgression.jsx';
 import HomeLayout from './components/homepage/HomeLayout.jsx';
 import ProfileInfo from './dashboard/ProfileInfo.jsx';
+import PrivatePage from './routes/PrivatePage.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: <PrivatePage><AdminDashboard></AdminDashboard></PrivatePage>,
         children: [
           {
             path: "all-users",
@@ -84,7 +85,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/teacher-dashboard",
-        element: <TeacherDashboard></TeacherDashboard>,
+        element: <PrivatePage><TeacherDashboard></TeacherDashboard></PrivatePage>,
         children: [
           {
             path: "add-class",
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/student-dashboard",
-        element: <StudentDashboard></StudentDashboard>,
+        element: <PrivatePage><StudentDashboard></StudentDashboard></PrivatePage>,
         children: [
           {
             path: "my-enrolled-classes",
@@ -124,7 +125,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/teach",
-        element: <TeacherRequest></TeacherRequest>
+        element: <PrivatePage><TeacherRequest></TeacherRequest></PrivatePage>
       },
       {
         path: "/classes",
@@ -132,11 +133,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/this-class-details/:id",
-        element: <ThisClassDetails></ThisClassDetails>
+        element: <PrivatePage><ThisClassDetails></ThisClassDetails></PrivatePage>
       },
       {
         path: "/payment/:id",
-        element: <Payment></Payment>
+        element: <PrivatePage><Payment></Payment></PrivatePage>
       }
     ]
   },
