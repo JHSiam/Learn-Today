@@ -33,6 +33,7 @@ import MyEnrolledClass from './dashboard/student/MyEnrolledClass.jsx';
 import MyClassDetails from './dashboard/teacher/MyClassDetails.jsx';
 import MyEnrolledClassDetails from './dashboard/student/MyEnrolledClassDetails.jsx';
 import AdminClassProgression from './dashboard/admin/AdminClassProgression.jsx';
+import HomeLayout from './components/homepage/HomeLayout.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     element: <App></App>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/",
+        element: <HomeLayout></HomeLayout>
+      },
       {
         path: "/register",
         element: <Register></Register>

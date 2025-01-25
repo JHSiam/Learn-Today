@@ -4,9 +4,9 @@ import { FaPlus, FaChalkboard, FaUser } from "react-icons/fa";
 
 const TeacherDashboard = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-300 text-white flex flex-col">
+      <aside className="bg-blue-300 text-white flex flex-col w-full lg:w-64 transition-all duration-300 ease-in-out">
         <div className="text-2xl font-bold p-4 border-b border-gray-700">
           Teacher Dashboard
         </div>
@@ -25,7 +25,7 @@ const TeacherDashboard = () => {
                 }
               >
                 <FaPlus className="mr-2" />
-                Add Class
+                <span>Add Class</span>
               </NavLink>
             </li>
 
@@ -42,7 +42,7 @@ const TeacherDashboard = () => {
                 }
               >
                 <FaChalkboard className="mr-2" />
-                My Classes
+                <span>My Classes</span>
               </NavLink>
             </li>
 
@@ -59,7 +59,7 @@ const TeacherDashboard = () => {
                 }
               >
                 <FaUser className="mr-2" />
-                Profile
+                <span>Profile</span>
               </NavLink>
             </li>
           </ul>
@@ -67,7 +67,7 @@ const TeacherDashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-gray-100 p-4">
+      <main className="flex-1 bg-gray-100 p-4 overflow-auto">
         <Outlet />
       </main>
     </div>
