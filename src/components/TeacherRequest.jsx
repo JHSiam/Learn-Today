@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../authentication/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function TeacherRequestForm() {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const [applicationStatus, setApplicationStatus] = useState(null);
 
   const {
     register,
@@ -25,19 +26,56 @@ export default function TeacherRequestForm() {
     },
   });
 
+  // Fetch application status
+  useEffect(() => {
+    const fetchApplicationStatus = async () => {
+      try {
+        const response = await axiosPublic.get(
+          `/teacher-application-check/${user?.email}`
+        );
+        setApplicationStatus(response.data?.status || null);
+      } catch (error) {
+        console.error("Error fetching application status:", error);
+      }
+    };
+
+    if (user?.email) {
+      fetchApplicationStatus();
+    }
+  }, [user?.email, axiosPublic]);
+
+  const handleReapply = async () => {
+    try {
+      const response = await axiosPublic.put(
+        `/teacher-application/${user?.email}`,
+        { status: "pending" }
+      );
+      if (response.data.modifiedCount > 0) {
+        toast.success("Reapplication submitted successfully!");
+        setApplicationStatus("pending");
+      } else {
+        toast.error("Failed to reapply. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error reapplying:", error);
+      toast.error("An error occurred. Please try again later.");
+    }
+  };
+
   const onSubmit = async (data) => {
     const formData = {
       ...data,
-      email: user?.email, // Ensure the email is user.email
+      email: user?.email,
       status: "pending",
-      photoUrl: user?.photoURL, // Add photo URL
+      photoUrl: user?.photoURL,
     };
 
     try {
       const response = await axiosPublic.post("/teacher-application", formData);
       if (response.data.insertedId) {
         toast.success("Application submitted successfully!");
-        reset(); // Reset the form after successful submission
+        reset();
+        setApplicationStatus("pending");
       } else if (response.data.message === "Application already exists") {
         toast.warning("You have already applied with this email.");
       } else {
@@ -144,6 +182,16 @@ export default function TeacherRequestForm() {
           Submit for Review
         </button>
       </form>
+
+      {/* Reapply Button */}
+      {applicationStatus === "rejected" && (
+        <button
+          onClick={handleReapply}
+          className="btn btn-warning w-full mt-4"
+        >
+          Reapply
+        </button>
+      )}
     </div>
   );
 }

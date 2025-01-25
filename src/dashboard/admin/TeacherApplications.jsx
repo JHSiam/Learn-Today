@@ -119,7 +119,7 @@ export default function TeacherApplications() {
                   <button
                     className="btn btn-sm btn-success mr-2"
                     onClick={() => handleStatusUpdate(application.email, "approved")}
-                    disabled={application.status === "approved"}
+                    disabled={application.status === "rejected"}
                   >
                     Approve
                   </button>

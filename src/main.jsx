@@ -34,6 +34,7 @@ import MyClassDetails from './dashboard/teacher/MyClassDetails.jsx';
 import MyEnrolledClassDetails from './dashboard/student/MyEnrolledClassDetails.jsx';
 import AdminClassProgression from './dashboard/admin/AdminClassProgression.jsx';
 import HomeLayout from './components/homepage/HomeLayout.jsx';
+import ProfileInfo from './dashboard/ProfileInfo.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
           {
             path: 'all-classes/admin-class-progress/:classId',
             element: <AdminClassProgression></AdminClassProgression>
+          },
+          {
+            path: 'profile',
+            element: <ProfileInfo></ProfileInfo>
           }
         ]
       },
@@ -92,6 +97,10 @@ const router = createBrowserRouter([
           {
             path: "my-classes/my-class-details/:id",
             element: <MyClassDetails></MyClassDetails>
+          },
+          {
+            path: 'profile',
+            element: <ProfileInfo></ProfileInfo>
           }
         ]
       },
@@ -106,6 +115,10 @@ const router = createBrowserRouter([
           {
             path: "my-enrolled-classes/my-enroll-class-details/:id",
             element: <MyEnrolledClassDetails></MyEnrolledClassDetails>
+          },
+          {
+            path: 'profile',
+            element: <ProfileInfo></ProfileInfo>
           }
         ]
       },

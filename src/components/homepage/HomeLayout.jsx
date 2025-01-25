@@ -8,7 +8,7 @@ import JoinAsTeacher from './JoinAsTeacher'
 
 export default function HomeLayout() {
   return (
-    <div className='mt-[80px]'>
+    <div>
         <Slider></Slider>
         <PartnersSection></PartnersSection>
         <SomeClass></SomeClass>

@@ -44,8 +44,12 @@ export default function Feedback() {
       <h1 className="text-3xl font-bold text-center mb-8">Teacher Feedback</h1>
       <div className="carousel w-full space-x-4">
         {feedbacks.map((feedback, index) => (
-          <div id={`slid${index}`} className="carousel-item w-full flex justify-center">
-            <FeedbackCard key={feedback._id} feedback={feedback} />
+          <div
+            key={feedback._id} // Added the key prop here
+            id={`slid${index}`}
+            className="carousel-item w-full flex justify-center"
+          >
+            <FeedbackCard feedback={feedback} />
           </div>
         ))}
       </div>

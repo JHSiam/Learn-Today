@@ -12,7 +12,11 @@ export default function TotalStats() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersResponse = await axiosPublic.get('/users')
+        const usersResponse = await axiosPublic.get('/users', {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('access-token')}`
+          }
+        })
         setTotalUsers(usersResponse.data.length)
 
         const classesResponse = await axiosPublic.get('/classes')

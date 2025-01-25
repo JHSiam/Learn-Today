@@ -1,27 +1,18 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
-//import useSingleUser from "../hooks/useSingleUser";
 import useAdmin from "../hooks/useAdmin";
 import useTeacher from "../hooks/useTeacher";
 
 const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
-  //const [SingleUser] = useSingleUser();
   const [isAdmin] = useAdmin();
   const [isTeacher] = useTeacher();
 
-
   function handleLogout() {
-    logout()
+    logout();
   }
-
-
-
-
-
-
 
   return (
     <div className="navbar bg-base-100 shadow-lg px-4">
@@ -32,7 +23,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
         </NavLink>
       </div>
 
-      {/* Navigation Links */}
+      {/* Navigation Links for Large Devices */}
       <div className="hidden lg:flex flex-none">
         <ul className="menu menu-horizontal px-1 space-x-4">
           <li>
@@ -78,13 +69,13 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-48">
+                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-48 z-20">
                   <div className="py-2 px-4 font-semibold text-gray-700">
                     {userName}
                   </div>
                   <ul>
-                    {
-                      user && isAdmin && <li>
+                    {user && isAdmin && (
+                      <li>
                         <NavLink
                           to="/dashboard"
                           className="block px-4 py-2 hover:bg-gray-100"
@@ -92,10 +83,10 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                           Dashboard
                         </NavLink>
                       </li>
-                    }
+                    )}
 
-                    {
-                      user && !isAdmin && !isTeacher && <li>
+                    {user && !isAdmin && !isTeacher && (
+                      <li>
                         <NavLink
                           to="/student-dashboard"
                           className="block px-4 py-2 hover:bg-gray-100"
@@ -103,11 +94,10 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                           Dashboard
                         </NavLink>
                       </li>
-                    }
+                    )}
 
-                    {
-
-                      user && isTeacher && <li>
+                    {user && isTeacher && (
+                      <li>
                         <NavLink
                           to="/teacher-dashboard"
                           className="block px-4 py-2 hover:bg-gray-100"
@@ -115,8 +105,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
                           Dashboard
                         </NavLink>
                       </li>
-
-                    }
+                    )}
 
                     <li>
                       <button
@@ -132,10 +121,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
             </li>
           ) : (
             <li>
-              <NavLink
-                to="/login"
-                className="btn btn-primary"
-              >
+              <NavLink to="/login" className="btn btn-primary">
                 Sign In
               </NavLink>
             </li>
@@ -144,7 +130,7 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
       </div>
 
       {/* Mobile Menu */}
-      <div className="dropdown dropdown-end lg:hidden">
+      <div className="dropdown dropdown-end lg:hidden z-30">
         <label tabIndex={0} className="btn btn-ghost">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -195,28 +181,56 @@ const Navbar = ({ isLoggedIn = false, userName, profilePicture }) => {
               Teach on Website
             </NavLink>
           </li>
-          {isLoggedIn ? (
+          {user?.email ? (
             <>
+              {user && isAdmin && (
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-primary font-bold" : ""
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+              {user && !isAdmin && !isTeacher && (
+                <li>
+                  <NavLink
+                    to="/student-dashboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-primary font-bold" : ""
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+              {user && isTeacher && (
+                <li>
+                  <NavLink
+                    to="/teacher-dashboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-primary font-bold" : ""
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
               <li>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : ""
-                  }
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                 >
-                  Dashboard
-                </NavLink>
-              </li>
-              <li>
-                <button onClick={() => alert("Logout")}>Logout</button>
+                  Logout
+                </button>
               </li>
             </>
           ) : (
             <li>
-              <NavLink
-                to="/signin"
-                className="btn btn-primary"
-              >
+              <NavLink to="/login" className="btn btn-primary">
                 Sign In
               </NavLink>
             </li>
