@@ -9,7 +9,8 @@ export default function MyClassDetails() {
   const { id } = useParams();
   const [totalAssignments, setTotalAssignments] = useState(0);
   return (
-    <div>MyClassDetails
+    <div className='flex flex-col items-center gap-2'>
+      <h1>MyClassDetails</h1>
       <ClassProgress classId={id} totalAssignments={totalAssignments} setTotalAssignments={setTotalAssignments}></ClassProgress>
       <CreateAssignment classId={id} setTotalAssignments={setTotalAssignments} totalAssignments={totalAssignments}></CreateAssignment>
     </div>

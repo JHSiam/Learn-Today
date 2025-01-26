@@ -11,7 +11,11 @@ const useTeacherApplication = () => {
   } = useQuery({
     queryKey: ["teacherApplications"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/teacher-application");
+      const res = await axiosPublic.get("/teacher-application",{
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+    });
       return res.data; // Return the fetched data
     },
   });

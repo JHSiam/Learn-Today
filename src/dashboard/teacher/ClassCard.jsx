@@ -111,7 +111,7 @@ export default function ClassCard({ classItem, refetch }) {
             {classItem.status}
           </span>
         </p>
-        <div className="flex gap-1">
+        <div className="flex flex-col gap-1">
           <button
             className="btn btn-sm btn-primary flex items-center gap-2"
             onClick={() => setIsUpdating(true)}

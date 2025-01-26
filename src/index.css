@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sora-font{
+    font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+}

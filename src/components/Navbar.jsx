@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useTeacher from "../hooks/useTeacher";
+import { SiSololearn } from "react-icons/si";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,11 +16,12 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4">
+    <div className="navbar bg-purple-400 shadow-lg px-4 max-w-[1380px] mx-auto">
       {/* Logo and Website Name */}
-      <div className="flex-1">
+      <div className="flex-1 items-center gap-1">
+      <SiSololearn />
         <NavLink to="/" className="text-xl font-bold">
-          Website Name
+          LearnToday
         </NavLink>
       </div>
 
@@ -53,7 +55,7 @@ const Navbar = () => {
                 isActive ? "text-primary font-bold" : ""
               }
             >
-              Teach on Website
+              Teach on LearnToday
             </NavLink>
           </li>
           {user?.email ? (
@@ -69,7 +71,7 @@ const Navbar = () => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-52 z-20">
+                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-60 z-20">
                   <div className="py-2 px-4 font-semibold text-gray-700">
                     {user.displayName}
                   </div>
@@ -178,7 +180,7 @@ const Navbar = () => {
                 isActive ? "text-primary font-bold" : ""
               }
             >
-              Teach on Website
+              Teach on LearnToday
             </NavLink>
           </li>
           {user?.email ? (

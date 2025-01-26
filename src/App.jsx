@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar></Navbar>
-      <div>
+      <div className='max-w-[1380px] mx-auto'>
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
