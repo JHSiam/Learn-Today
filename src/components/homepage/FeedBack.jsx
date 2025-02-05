@@ -41,7 +41,7 @@ export default function Feedback() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Teacher Feedback</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">Students Feedback</h1>
       <div className="carousel w-full space-x-4">
         {feedbacks.map((feedback, index) => (
           <div

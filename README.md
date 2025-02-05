@@ -4,6 +4,13 @@ Welcome to **LearnToday**, a comprehensive platform designed for students, teach
 
 ---
 
+---
+
+### 🖼️ **Website**
+![LearnToday ](https://i.ibb.co.com/rGzJ3FVn/Screenshot-206.png)
+
+---
+
 ### 🖥️ **Live Site URL**
 [Visit LearnToday Live](https://online-learning-df6bc.web.app/)
 
@@ -52,7 +59,7 @@ Welcome to **LearnToday**, a comprehensive platform designed for students, teach
 10. **User-Friendly Navigation**  
     - Intuitive navigation for seamless user experience, even for beginners.  
 
----
+
 
 ### 🛠️ **Technologies Used**
 - **Frontend:** React, TailwindCSS, DaisyUI, Framer Motion  
@@ -60,5 +67,37 @@ Welcome to **LearnToday**, a comprehensive platform designed for students, teach
 - **Authentication:** Firebase  
 - **Hosting:** Vercel  
 
+---
 
+## 🏗️ **How to Run the Project Locally**
+Follow these steps to set up and run the project on your local machine:
+
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/JHSiam/Learn-Today.git
+   ```
+
+2. **Navigate to the Project Directory**
+   ```sh
+   cd Learn-Today
+   ```
+
+3. **Install Dependencies**
+   ```sh
+   npm install
+   ```
+
+4. **Set Up Environment Variables**
+   - Create a `.env` file in the root directory.
+   - Add necessary environment variables (such as Firebase credentials, MongoDB URI, etc.).
+
+5. **Start the Development Server**
+   ```sh
+   npm start
+   ```
+
+6. **Access the Application**
+   - Open your browser and go to `http://localhost:3000/`.
+
+Now, you should be able to explore and test **LearnToday** locally! 🚀
 
