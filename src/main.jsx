@@ -36,6 +36,8 @@ import AdminClassProgression from './dashboard/admin/AdminClassProgression.jsx';
 import HomeLayout from './components/homepage/HomeLayout.jsx';
 import ProfileInfo from './dashboard/ProfileInfo.jsx';
 import PrivatePage from './routes/PrivatePage.jsx';
+import AboutUs from './components/homepage/AboutUs.jsx';
+import ContactUs from './components/homepage/ContactUs.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -138,6 +140,14 @@ const router = createBrowserRouter([
       {
         path: "/payment/:id",
         element: <PrivatePage><Payment></Payment></PrivatePage>
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>
       }
     ]
   },
