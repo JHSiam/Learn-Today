@@ -16,7 +16,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-purple-400 shadow-lg px-4 max-w-[1380px] mx-auto">
+    <div className="navbar bg-purple-400 shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40">
       {/* Logo and Website Name */}
       <div className="flex-1 items-center gap-1">
       <SiSololearn />

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* index.css
+body {
+  @apply bg-purple-400 text-white;
+} */
+
 .sora-font{
     font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
