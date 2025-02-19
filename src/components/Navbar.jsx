@@ -93,7 +93,7 @@ const Navbar = () => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-60 z-20">
+                <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-60 z-20 hover:bg-white">
                   <div className="py-2 px-4 font-semibold text-gray-700">
                     {user.displayName}
                   </div>
