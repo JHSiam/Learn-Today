@@ -7,7 +7,7 @@ export default function Slider() {
         <div
             className="hero min-h-screen mt-8"
             style={{
-                backgroundImage: "url(https://i.ibb.co.com/fzFV4NSt/How-to-Create-an-Online-Course-For-Free-Complete-Guide-6.jpg)",
+                backgroundImage: "url(https://instructor-academy.onlinecoursehost.com/content/images/size/w2000/2023/05/How-to-Create-an-Online-Course-For-Free--Complete-Guide--6.jpg)",
             }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-neutral-content text-center">
