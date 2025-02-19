@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const Card = ({ classData }) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-purple-400 text-white rounded-lg shadow-lg overflow-hidden p-4">
       <img
@@ -13,7 +15,10 @@ const Card = ({ classData }) => {
       <p className="mb-2">{classData.description}</p>
       <p className="font-semibold mb-2">Instructor: {classData.name}</p>
       <p className="mb-2">Enrollment: {classData.enrollment}</p>
-      <p className="font-bold">Price: ${classData.price}</p>
+      <p className="font-bold mb-4">Price: ${classData.price}</p>
+      <button onClick={()=>navigate('/classes')} className="btn btn-primary font-semibold px-4 py-2 rounded-md hover:bg-purple-300 transition">
+        Learn More
+      </button>
     </div>
   );
 };
