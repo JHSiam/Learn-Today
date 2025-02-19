@@ -8,7 +8,7 @@ export default function ApprovedClassCard({ classData }) {
 
 
   return (
-    <div className="card bg-white shadow-md rounded-lg p-4">
+    <div className="card bg-purple-400 shadow-md rounded-lg p-4">
       <img
         src={image}
         alt={title}

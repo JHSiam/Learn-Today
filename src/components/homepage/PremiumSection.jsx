@@ -82,7 +82,7 @@ const PremiumSection = () => {
         transition={{ duration: 0.8 }}
         className="text-center mt-12"
       >
-        <button className="btn btn-warning btn-lg text-lg font-semibold hover:scale-105 transform transition">
+        <button className="btn btn-primary btn-lg text-lg font-semibold hover:scale-105 transform transition">
           Upgrade to Premium
         </button>
       </motion.div>
