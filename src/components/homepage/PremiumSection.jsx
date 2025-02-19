@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const PremiumSection = () => {
   return (
-    <div className="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-16 px-6 lg:px-20 rounded-2xl shadow-xl">
+    <div className="bg-purple-400 text-white py-16 px-6 lg:px-20 rounded-2xl shadow-xl">
       {/* Animated Header */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}

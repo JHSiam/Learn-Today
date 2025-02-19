@@ -3,7 +3,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Card = ({ classData }) => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 to-green-500 text-white rounded-lg shadow-lg overflow-hidden p-4">
+    <div className="bg-purple-400 text-white rounded-lg shadow-lg overflow-hidden p-4">
       <img
         src={classData.image}
         alt={classData.title}

@@ -1,21 +1,22 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Slider() {
+    const naviage = useNavigate();
     return (
         <div
             className="hero min-h-screen mt-8"
             style={{
-                backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+                backgroundImage: "url(https://i.ibb.co.com/fzFV4NSt/How-to-Create-an-Online-Course-For-Free-Complete-Guide-6.jpg)",
             }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                    <h1 className="mb-5 text-5xl font-bold">Well Come to LearnToday</h1>
                     <p className="mb-5">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        "At EduLearn, we believe that knowledge has the power to change lives. Our mission is to provide accessible, high-quality education that helps learners develop skills, achieve their goals, and shape a better future. Whether you're starting your journey or advancing your career, we're here to support your growth every step of the way."
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <button className="btn btn-primary" onClick={()=>naviage('/classes')}>Get Started</button>
                 </div>
             </div>
         </div>

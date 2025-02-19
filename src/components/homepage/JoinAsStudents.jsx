@@ -4,7 +4,7 @@ import { FaUserGraduate, FaBook, FaChalkboardTeacher } from "react-icons/fa";
 
 const JoinAsStudents = () => {
   return (
-    <section className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-16 px-6">
+    <section className="bg-purple-400 text-white py-16 px-6">
       <div className="container mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold mb-6"

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function JoinAsTeacher() {
   return (
-    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 p-12 mt-12 rounded-lg shadow-lg">
+    <div className="bg-purple-400 p-12 mt-12 rounded-lg shadow-lg">
       <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         {/* Left Side - Text Section */}
         <div className="text-center md:text-left w-full md:w-1/2">
