@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
@@ -11,12 +11,34 @@ const Navbar = () => {
   const [isAdmin] = useAdmin();
   const [isTeacher] = useTeacher();
 
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  );
+
+  function handleThemeToggle(e) {
+    if (e.target.checked) {
+      setTheme("dark")
+    }
+    else {
+      setTheme("light")
+    }
+
+  };
+
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem('theme');
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+
+  }, [theme])
+
   function handleLogout() {
     logout();
   }
 
   return (
-    <div className="navbar bg-purple-400 shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40">
+    <div className="navbar bg-purple-400 shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40 blurNavbar">
       {/* Logo and Website Name */}
       <div className="flex-1 items-center gap-1">
       <SiSololearn />
@@ -79,7 +101,11 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
+            
           </li>
+
+          
+          
           {user?.email ? (
             <li className="relative">
               <button
@@ -151,6 +177,7 @@ const Navbar = () => {
             </li>
           )}
         </ul>
+        <input type="checkbox" value="synthwave" className="toggle theme-controller ml-1" onChange={handleThemeToggle}/>
       </div>
 
       {/* Mobile Menu */}

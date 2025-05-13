@@ -7,6 +7,14 @@ body {
   @apply bg-purple-400 text-white;
 } */
 
+
+
+
+.blurNavbar {
+  background-color: #3f405a40;
+  backdrop-filter: blur(20px);
+}
+
 .sora-font{
     font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
