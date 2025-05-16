@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
@@ -15,33 +15,44 @@ const Navbar = () => {
     localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
   );
 
-  function handleThemeToggle(e) {
+  const dropdownRef = useRef(null);
+
+  const handleThemeToggle = (e) => {
     if (e.target.checked) {
-      setTheme("dark")
+      setTheme("dark");
+    } else {
+      setTheme("light");
     }
-    else {
-      setTheme("light")
-    }
-
   };
-
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem('theme');
+    const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
-  }, [theme])
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
 
-  function handleLogout() {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
     logout();
-  }
+  };
 
   return (
     <div className="navbar bg-purple-400 shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40 blurNavbar">
       {/* Logo and Website Name */}
       <div className="flex-1 items-center gap-1">
-      <SiSololearn />
+        <SiSololearn />
         <NavLink to="/" className="text-xl font-bold">
           LearnToday
         </NavLink>
@@ -80,7 +91,6 @@ const Navbar = () => {
               Teach on LearnToday
             </NavLink>
           </li>
-
           <li>
             <NavLink
               to="/about"
@@ -91,7 +101,6 @@ const Navbar = () => {
               About Us
             </NavLink>
           </li>
-
           <li>
             <NavLink
               to="/contact"
@@ -101,13 +110,10 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
-            
           </li>
 
-          
-          
           {user?.email ? (
-            <li className="relative">
+            <li className="relative" ref={dropdownRef}>
               <button
                 className="btn btn-ghost btn-circle avatar"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -117,7 +123,6 @@ const Navbar = () => {
                 </div>
               </button>
 
-              {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-10 bg-white rounded-lg shadow-lg p-2 w-60 z-20 hover:bg-white">
                   <div className="py-2 px-4 font-semibold text-gray-700">
@@ -134,7 +139,6 @@ const Navbar = () => {
                         </NavLink>
                       </li>
                     )}
-
                     {user && !isAdmin && !isTeacher && (
                       <li>
                         <NavLink
@@ -145,7 +149,6 @@ const Navbar = () => {
                         </NavLink>
                       </li>
                     )}
-
                     {user && isTeacher && (
                       <li>
                         <NavLink
@@ -156,7 +159,6 @@ const Navbar = () => {
                         </NavLink>
                       </li>
                     )}
-
                     <li>
                       <button
                         className="block w-full text-left px-4 py-2 hover:bg-gray-100"
@@ -177,7 +179,12 @@ const Navbar = () => {
             </li>
           )}
         </ul>
-        <input type="checkbox" value="synthwave" className="toggle theme-controller ml-1" onChange={handleThemeToggle}/>
+        <input
+          type="checkbox"
+          value="synthwave"
+          className="toggle theme-controller ml-1"
+          onChange={handleThemeToggle}
+        />
       </div>
 
       {/* Mobile Menu */}

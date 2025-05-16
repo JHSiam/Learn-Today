@@ -35,7 +35,7 @@ export default function TotalStats() {
   return (
     <div className="p-6">
       {/* Heading */}
-      <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">Overview</h1>
+      <h1 className="text-3xl font-semibold text-center mb-6">Overview</h1>
 
       <div className="flex justify-between items-center space-x-8">
         {/* Left Side - Stats Cards */}

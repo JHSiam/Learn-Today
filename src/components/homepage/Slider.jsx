@@ -14,7 +14,7 @@ export default function Slider() {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Well Come to LearnToday</h1>
                     <p className="mb-5">
-                        "At EduLearn, we believe that knowledge has the power to change lives. Our mission is to provide accessible, high-quality education that helps learners develop skills, achieve their goals, and shape a better future. Whether you're starting your journey or advancing your career, we're here to support your growth every step of the way."
+                        "At EduLearn, we believe that knowledge has the power to change lives."
                     </p>
                     <button className="btn btn-primary" onClick={()=>naviage('/classes')}>Get Started</button>
                 </div>
