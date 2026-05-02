@@ -11,25 +11,25 @@ const Navbar = () => {
   const [isAdmin] = useAdmin();
   const [isTeacher] = useTeacher();
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
-  );
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  // );
 
   const dropdownRef = useRef(null);
 
-  const handleThemeToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
+  // const handleThemeToggle = (e) => {
+  //   if (e.target.checked) {
+  //     setTheme("dark");
+  //   } else {
+  //     setTheme("light");
+  //   }
+  // };
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
+  //   const localTheme = localStorage.getItem("theme");
+  //   document.querySelector("html").setAttribute("data-theme", localTheme);
+  // }, [theme]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-purple-400 shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40 blurNavbar">
+    <div className="navbar shadow-lg lg:px-20 w-full mx-auto sticky top-0 z-40 blurNavbar">
       {/* Logo and Website Name */}
       <div className="flex-1 items-center gap-1">
         <SiSololearn />
@@ -179,12 +179,12 @@ const Navbar = () => {
             </li>
           )}
         </ul>
-        <input
+        {/* <input
           type="checkbox"
           value="synthwave"
           className="toggle theme-controller ml-1"
           onChange={handleThemeToggle}
-        />
+        /> */}
       </div>
 
       {/* Mobile Menu */}

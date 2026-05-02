@@ -90,7 +90,7 @@ export default function TeacherRequestForm() {
   return (
     <div className="p-4 max-w-lg mx-auto">
       <ToastContainer />
-      <h2 className="text-2xl font-bold mb-4">Apply for Teaching Position</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Apply for Teaching Position</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>

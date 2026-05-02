@@ -3,61 +3,63 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-400 text-white py-8 mt-10 px-10">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-black bg-opacity-60 backdrop-blur-md text-white py-10 px-6 mt-12">
+      <div className="container mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* About Section */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">About Us</h2>
-            <p className="text-sm">
-              We provide premium online education and resources for students
-              worldwide. Join us to unlock your true potential and achieve your
-              goals.
+            <h2 className="text-2xl font-bold mb-5 text-purple-400">About Us</h2>
+            <p className="text-gray-300 leading-relaxed text-sm">
+              We provide premium online education and resources for students worldwide.
+              Join us to unlock your true potential and achieve your goals.
             </p>
           </div>
 
           {/* Links Section */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
-            <ul className="space-y-2">
-              <li>
-                <a href="/home" className="hover:text-gray-300">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/classes" className="hover:text-gray-300">
-                  All Classes
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="hover:text-gray-300">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/contact" className="hover:text-gray-300">
-                  Contact Us
-                </a>
-              </li>
+            <h2 className="text-2xl font-bold mb-5 text-purple-400">Quick Links</h2>
+            <ul className="space-y-3 text-gray-300">
+              {["Home", "All Classes", "About Us", "Contact Us"].map((link) => (
+                <li key={link}>
+                  <a
+                    href={`/${link.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="hover:text-purple-400 transition-colors duration-300"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Section */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
-            <p className="text-sm">
-              Email: <a href="mailto:support@example.com" className="hover:text-gray-300">support@example.com</a>
+            <h2 className="text-2xl font-bold mb-5 text-purple-400">Contact Us</h2>
+            <p className="text-gray-300 mb-2 text-sm">
+              Email:{" "}
+              <a
+                href="mailto:support@example.com"
+                className="hover:text-purple-400 transition-colors duration-300"
+              >
+                support@example.com
+              </a>
             </p>
-            <p className="text-sm">
-              Phone: <a href="tel:+1234567890" className="hover:text-gray-300">+1 234 567 890</a>
+            <p className="text-gray-300 mb-4 text-sm">
+              Phone:{" "}
+              <a
+                href="tel:+1234567890"
+                className="hover:text-purple-400 transition-colors duration-300"
+              >
+                +1 234 567 890
+              </a>
             </p>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex space-x-6 text-purple-400 text-2xl">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xl hover:text-gray-400"
+                className="hover:text-purple-600 transition-colors duration-300"
+                aria-label="Facebook"
               >
                 <FaFacebook />
               </a>
@@ -65,7 +67,8 @@ const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xl hover:text-gray-400"
+                className="hover:text-purple-600 transition-colors duration-300"
+                aria-label="Twitter"
               >
                 <FaTwitter />
               </a>
@@ -73,7 +76,8 @@ const Footer = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xl hover:text-gray-400"
+                className="hover:text-purple-600 transition-colors duration-300"
+                aria-label="Instagram"
               >
                 <FaInstagram />
               </a>
@@ -81,7 +85,8 @@ const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xl hover:text-gray-400"
+                className="hover:text-purple-600 transition-colors duration-300"
+                aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </a>
@@ -90,10 +95,8 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 text-center border-t border-gray-700 pt-4">
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} LearnOnline. All Rights Reserved.
-          </p>
+        <div className="mt-10 border-t border-purple-700 pt-6 text-center text-gray-400 text-sm select-none">
+          &copy; {new Date().getFullYear()} LearnOnline. All Rights Reserved.
         </div>
       </div>
     </footer>

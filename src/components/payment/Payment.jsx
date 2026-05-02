@@ -28,8 +28,8 @@ const Payment = () => {
     
 
     return (
-        <div className="max-w-[800px] mx-auto">
-            <h1>Payment</h1>
+        <div className="max-w-[800px] mx-auto mt-7">
+            {/* <h1>Payment</h1> */}
             <div>
                 <Elements stripe={stripePromise}>
                     <CheckoutForm classData ={classData}></CheckoutForm>

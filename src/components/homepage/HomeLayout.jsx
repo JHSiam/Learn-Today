@@ -7,11 +7,13 @@ import TotalStats from './TotalStats'
 import JoinAsTeacher from './JoinAsTeacher'
 import PremiumSection from './PremiumSection'
 import JoinAsStudents from './JoinAsStudents'
+import HeroSection from './HeroSection'
 
 export default function HomeLayout() {
   return (
     <div className='flex flex-col gap-8'>
-        <Slider></Slider>
+        {/* <Slider></Slider> */}
+        <HeroSection></HeroSection>
         <PartnersSection></PartnersSection>
         <SomeClass></SomeClass>
         <Feedback></Feedback>

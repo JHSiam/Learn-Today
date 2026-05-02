@@ -6,7 +6,7 @@ export default function AllApprovedClass() {
   const [approvedClasses, setApprovedClasses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [sortOrder, setSortOrder] = useState("low-to-high"); // Default sorting order
+  const [sortOrder, setSortOrder] = useState("low-to-high");
   const axiosPublic = useAxiosPublic();
 
   const fetchClasses = async (page) => {
@@ -32,49 +32,54 @@ export default function AllApprovedClass() {
     }
   };
 
-  // Sorting function
   const sortedClasses = [...approvedClasses].sort((a, b) => {
     return sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price;
   });
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-6">All Approved Classes</h2>
-      
+    <div className="max-w-7xl mx-auto px-6 py-12">
+      {/* Heading */}
+      <h2 className="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 mb-10">
+        All Approved Classes
+      </h2>
+
       {/* Sorting Controls */}
-      <div className="mb-4 flex justify-end">
+      <div className="mb-6 flex justify-end">
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="border p-2 rounded"
+          className="px-4 py-2 rounded-lg border border-purple-400 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
         >
-          <option value="low-to-high">Price: Low to High</option>
-          <option value="high-to-low">Price: High to Low</option>
+          <option value="low-to-high" className="text-black">Price: Low to High</option>
+          <option value="high-to-low" className="text-black">Price: High to Low</option>
         </select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {sortedClasses.map((classData) => (
           <ApprovedClassCard key={classData._id} classData={classData} />
         ))}
       </div>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center items-center mt-6 space-x-4">
+      {/* Pagination */}
+      <div className="flex justify-center items-center mt-10 space-x-6">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="btn btn-outline btn-sm"
+          className="px-5 py-2 rounded-lg border border-purple-500 text-purple-300 hover:bg-purple-500 hover:text-white disabled:opacity-40 transition-all duration-300"
         >
           Previous
         </button>
-        <span className="font-medium">
+
+        <span className="font-medium text-white">
           Page {currentPage} of {totalPages}
         </span>
+
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="btn btn-outline btn-sm"
+          className="px-5 py-2 rounded-lg border border-purple-500 text-purple-300 hover:bg-purple-500 hover:text-white disabled:opacity-40 transition-all duration-300"
         >
           Next
         </button>
