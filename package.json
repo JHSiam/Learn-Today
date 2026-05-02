@@ -17,6 +17,7 @@
     "firebase": "^11.2.0",
     "framer-motion": "^12.0.5",
     "localforage": "^1.10.0",
+    "lucide-react": "^1.14.0",
     "match-sorter": "^8.0.0",
     "ogl": "^1.0.11",
     "react": "^18.3.1",

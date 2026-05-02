@@ -7,13 +7,17 @@ export default function AllApprovedClass() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [sortOrder, setSortOrder] = useState("low-to-high");
+  const [searchTerm, setSearchTerm] = useState("");
+
   const axiosPublic = useAxiosPublic();
 
+  // Fetch data
   const fetchClasses = async (page) => {
     try {
       const response = await axiosPublic.get(`/all-classes/approved`, {
         params: { page, limit: 3 },
       });
+
       setApprovedClasses(response.data.data);
       setCurrentPage(response.data.currentPage);
       setTotalPages(response.data.totalPages);
@@ -26,14 +30,27 @@ export default function AllApprovedClass() {
     fetchClasses(currentPage);
   }, [currentPage]);
 
+  // Reset to page 1 when searching
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
-  const sortedClasses = [...approvedClasses].sort((a, b) => {
-    return sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price;
+  // 🔍 Filter by title
+  const filteredClasses = approvedClasses.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // 🔄 Sort after filtering
+  const sortedClasses = filteredClasses.sort((a, b) => {
+    return sortOrder === "low-to-high"
+      ? Number(a.price) - Number(b.price)
+      : Number(b.price) - Number(a.price);
   });
 
   return (
@@ -43,23 +60,47 @@ export default function AllApprovedClass() {
         All Approved Classes
       </h2>
 
-      {/* Sorting Controls */}
-      <div className="mb-6 flex justify-end">
+      {/* Search + Sort */}
+      <div className="mb-6 flex flex-col md:flex-row justify-between gap-4">
+        
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search by course title..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-4 py-2 w-full md:w-1/3 rounded-lg border border-purple-400 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+        />
+
+        {/* Sorting */}
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
           className="px-4 py-2 rounded-lg border border-purple-400 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
         >
-          <option value="low-to-high" className="text-black">Price: Low to High</option>
-          <option value="high-to-low" className="text-black">Price: High to Low</option>
+          <option value="low-to-high" className="text-black">
+            Price: Low to High
+          </option>
+          <option value="high-to-low" className="text-black">
+            Price: High to Low
+          </option>
         </select>
       </div>
 
       {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sortedClasses.map((classData) => (
-          <ApprovedClassCard key={classData._id} classData={classData} />
-        ))}
+        {sortedClasses.length > 0 ? (
+          sortedClasses.map((classData) => (
+            <ApprovedClassCard
+              key={classData._id}
+              classData={classData}
+            />
+          ))
+        ) : (
+          <p className="text-center col-span-3 text-gray-400">
+            No courses found.
+          </p>
+        )}
       </div>
 
       {/* Pagination */}
