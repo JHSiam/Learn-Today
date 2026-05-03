@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { FaUsers, FaChalkboardTeacher, FaBook, FaUser } from "react-icons/fa";
+import { FaUsers, FaChalkboardTeacher, FaBook, FaUser, FaChartPie, FaHome } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,9 +27,11 @@ const AdminDashboard = () => {
   }, [sidebarOpen]);
 
   const navItems = [
+    { to: "overview",        icon: <FaHome size={16} />,              label: "Overview"        },
     { to: "teacher-request", icon: <FaChalkboardTeacher size={16} />, label: "Teacher Request" },
     { to: "all-users",       icon: <FaUsers size={16} />,             label: "Users" },
     { to: "all-classes",     icon: <FaBook size={16} />,              label: "All Classes" },
+    { to: "user-overview",   icon: <FaChartPie size={16} />,          label: "User Overview" },
     { to: "profile",         icon: <FaUser size={16} />,              label: "Profile" },
   ];
 

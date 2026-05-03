@@ -38,6 +38,9 @@ import ProfileInfo from './dashboard/ProfileInfo.jsx';
 import PrivatePage from './routes/PrivatePage.jsx';
 import AboutUs from './components/homepage/AboutUs.jsx';
 import ContactUs from './components/homepage/ContactUs.jsx';
+import UserOverview from './dashboard/admin/UserOverview.jsx';
+import AdminOverview from './dashboard/admin/AdminOverview.jsx';
+import TeacherOverview from './dashboard/teacher/TeacherOverview.jsx';
 //import PaymentPage from './components/payment/PaymentPage.jsx';
 
 
@@ -82,6 +85,18 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <ProfileInfo></ProfileInfo>
+          },
+          {
+            path: '',
+            element:<div></div>
+          },
+          {
+            path: 'user-overview',
+            element:<UserOverview></UserOverview>
+          },
+          {
+            path: 'overview',
+            element: <AdminOverview></AdminOverview>
           }
         ]
       },
@@ -104,6 +119,10 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <ProfileInfo></ProfileInfo>
+          },
+          {
+            path: 'overview',
+            element: <TeacherOverview></TeacherOverview>
           }
         ]
       },

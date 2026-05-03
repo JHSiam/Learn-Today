@@ -90,7 +90,7 @@ export default function TeacherRequestForm() {
   return (
     <div className="p-4 max-w-lg mx-auto">
       <ToastContainer />
-      <h2 className="text-2xl font-bold mb-4 text-center">Apply for Teaching Position</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-purple-600">Apply for Teaching Position</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>
@@ -178,7 +178,7 @@ export default function TeacherRequestForm() {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn btn-primary bg-purple-600 hover:bg-purple-700 w-full">
           Submit for Review
         </button>
       </form>
